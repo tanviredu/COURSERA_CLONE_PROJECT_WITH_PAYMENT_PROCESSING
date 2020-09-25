@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -21,15 +22,15 @@
     <link rel="shortcut icon" type="image/ico" href="assest/img/favicon.png" />
 
     <!--====== STYLESHEETS ======-->
-    <link href="assest/css/plugins.css" rel="stylesheet">
-    <link href="assest/css/theme.css" rel="stylesheet">
-    <link href="assest/css/icons.css" rel="stylesheet">
+    <link href="{% static  'css/plugins.css' %}" rel="stylesheet">
+    <link href="{% static 'css/theme.css' %}"  rel="stylesheet">
+    <link href="{% static 'css/icons.css' %}"  rel="stylesheet">
 
     <!--====== MAIN STYLESHEETS ======-->
-    <link href="style.css" rel="stylesheet">
-    <link href="assest/css/responsive.css" rel="stylesheet">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
 
-    <script src="assest/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -59,7 +60,7 @@
                 <nav class="navbar">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="#home" class="navbar-brand"><img src="assest/img/logo.png" alt="logo"></a>
+                            <a href="#home" class="navbar-brand"><img src="{% static 'img/logo.png' %}" alt="logo"></a>
                         </div>
                         <div id="main-nav" class="stellarnav">
                             <ul id="nav" class="nav navbar-nav pull-right">
@@ -265,7 +266,7 @@
                 </div>
                 <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                     <div class="single-course mb20">
-                        <img src="assest/img/course/blog-2.jpg" alt="">
+                        <img src=" {% static 'img/course/blog-2.jpg' %}" alt="">
                         <div class="course-details padding30">
                             <h3 class="font18">The Art and Practice of Leadership</h3>
                             <p>MPs who are leaving the protection of for the campaign trail will render...</p>
@@ -275,7 +276,7 @@
                 </div>
                 <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                     <div class="single-course mb20">
-                        <img src="assest/img/course/blog-3.jpg" alt="">
+                        <img src="{% static 'img/course/blog-3.jpg' %}" alt="">
                         <div class="course-details padding30">
                             <h3 class="font18">Introduction to Resume Writing</h3>
                             <p>MPs who are leaving the protection of for the campaign trail will render...</p>
@@ -285,7 +286,7 @@
                 </div>
                 <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                     <div class="single-course mb20">
-                        <img src="assest/img/course/blog-4.jpg" alt="">
+                        <img src=" {% static 'assest/img/course/blog-4.jpg' %}" alt="">
                         <div class="course-details padding30">
                             <h3 class="font18">The Art and Practice of Leadership</h3>
                             <p>MPs who are leaving the protection of for the campaign trail will render...</p>
@@ -676,31 +677,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
     <!--====== SCRIPTS JS ======-->
-    <script src="assest/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="assest/js/vendor/bootstrap.min.js"></script>
+    <script src=" {% static 'js/vendor/jquery-1.12.4.min.js' %} "></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %} "></script>
 
     <!--====== PLUGINS JS ======-->
-    <script src="assest/js/vendor/jquery.easing.1.3.js"></script>
-    <script src="assest/js/vendor/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assest/js/vendor/jquery.appear.js"></script>
-    <script src="assest/js/owl.carousel.min.js"></script>
-    <script src="assest/js/stellar.js"></script>
-    <script src="assest/js/waypoints.min.js"></script>
-    <script src="assest/js/jquery.counterup.min.js"></script>
-    <script src="assest/js/wow.min.js"></script>
-    <script src="assest/js/jquery-modal-video.min.js"></script>
-    <script src="assest/js/stellarnav.min.js"></script>
-    <script src="assest/js/placeholdem.min.js"></script>
-    <script src="assest/js/contact-form.js"></script>
-    <script src="assest/js/jquery.ajaxchimp.js"></script>
-    <script src="assest/js/jquery.sticky.js"></script>
+    <script src="{% static 'js/vendor/jquery.easing.1.3.js' %} "></script>
+    <script src="{% static 'js/vendor/jquery-migrate-1.2.1.min.js' %} "></script>
+    <script src="{% static 'js/vendor/jquery.appear.js' %} "></script>
+    <script src="{% static 'js/owl.carousel.min.js' %} "></script>
+    <script src="{% static 'js/stellar.js' %} "></script>
+    <script src="{% static 'js/waypoints.min.js' %} "></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %} "></script>
+    <script src="{% static 'js/wow.min.js' %} "></script>
+    <script src="{% static 'js/jquery-modal-video.min.js' %} "></script>
+    <script src="{% static 'js/stellarnav.min.js' %} "></script>
+    <script src="{% static 'js/placeholdem.min.js' %} "></script>
+    <script src="{% static 'js/contact-form.js' %} "></script>
+    <script src="{% static 'js/jquery.ajaxchimp.js' %} "></script>
+    <script src="{% static 'js/jquery.sticky.js' %} "></script>
 
     <!--===== ACTIVE JS=====-->
-    <script src="assest/js/main.js"></script>
+    <script src="{% static 'js/main.js' %} "></script>
 
     <!--===== MAPS JS=====-->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTS_KEDfHXYBslFTI_qPJIybDP3eceE-A&sensor=false"></script>
-    <script src="assest/js/maps.active.js"></script>
+    <script src="{% static 'assest/js/maps.active.js' %} "></script>
 </body>
 
 </html>
