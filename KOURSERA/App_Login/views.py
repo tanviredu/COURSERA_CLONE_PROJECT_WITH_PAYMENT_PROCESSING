@@ -26,13 +26,16 @@ def sign_up(request):
 def login_user(request):
     form = AuthenticationForm()
     if request.method == "POST":
-        form = AuthenticationForm(request.POST)
+        form = AuthenticationForm(data = request.POST)
+        
         if form.is_valid():
             ## username is the email
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-
+            print(username)
+            print(password)
             user = authenticate(username=username,password=password)
+            
             if user is not None:
                 login(request,user)
                 ## this is temporary Http Response
@@ -58,6 +61,8 @@ def user_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request,'Changed Saved')
+            ## this is temporary
+            return HttpResponse("Profile Updated")
     
     return render(request,"App_Login/change_profile.html",{'form':form})
     
