@@ -94,6 +94,11 @@ class Profile(models.Model):
                 return False 
         return True 
 
+class Video_Content(models.Model):
+    user       = models.OneToOneField(User,on_delete=models.CASCADE,related_name="user_content")
+    video_slug = models.SlugField(max_length=400) 
+
+
 
 
 
