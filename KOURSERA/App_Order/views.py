@@ -38,3 +38,66 @@ def add_to_cart(request,pk):
             order_item[0].save()
             messages.info(request,"This Item Quantity was updated")
             return redirect("App_Shop:home")
+        else:
+            ## add to the cart that belongs 
+            ##  order object that has (ordered=False)
+            order.orderitems.add(order_item[0])
+            messages.info(request,"This item is added to the cart")
+            return redirect("App_Shop:home")
+    else:
+        ## first time 
+        ## never created a order
+        ## so create the order object then add the cart
+        order = Order(user=request.user)
+        order.save()
+        order.orderitems.add(order_item[0])
+        messages.info(request,"Item added To the Cart")
+        return redirect('App_Shop:home')
+
+
+
+@login_required
+def cart_view(request):
+    carts = Cart.objects.filter(user=request.user,purchased=False)
+    ## at a time there will be one order that is
+    ## has ordered=False because after payment 
+    ## this flag wil change
+    ## then as long there is Order(ordered=False) exists
+    ## the cart that you add will join this
+    ## so when you search for orders(order=False)
+    ## you will get one order but in a list
+    ## so do indexing [0] to get that
+    orders = Order.objects.filter(user=request.user,ordered=False)
+    if carts.exists() and orders.exists():
+        order = orders[0]
+        return render(request,'App_Order/cart.html',{'carts':carts,'order':order})
+    else:
+        messages.warning(request,"You Don't have any item in your cart")
+        return redirect("App_Shop:home")
+
+@login_required
+def remove_form_cart(request,pk):
+    item = get_object_or_404(Product,pk=pk)
+    order_qs = Order.objects.filter(user=request.user,ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        ## seach for specfic product in the order
+        if order.orderitems.filter(item=item).exists():
+            ## now find the cart object of the product
+            ## then remove from the Order object
+            ## since order object has list of cart objects
+            ## we need to remove the cart object thats why we are seaching 
+            ## the cart too
+            ## it will also be one item in one list so do the indexing
+            order_item = Cart.objects.filter(item=item,user=request.user,purchased=False)[0]
+            order_item.delete()
+            messages.warning(request,"This Item is Removed from the cart")
+            return redirect('App_Order:cart')
+        else:
+            messages.info(request,"This item is not in your cart")
+            return redirect('App_Shop:home')
+    else:
+        ## this means the order is not active 
+        ## because we are searcing for ordered=False
+        messages.info(request,"You dont Have any active Order")
+        return redirect("App_Shop:home")

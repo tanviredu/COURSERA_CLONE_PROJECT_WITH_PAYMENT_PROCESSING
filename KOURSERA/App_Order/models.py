@@ -6,6 +6,7 @@ from App_Shop.models import Product
 class Cart(models.Model):
     user      = models.ForeignKey(settings.AUTH_USER_MODEL ,on_delete=models.CASCADE,related_name="cart")
     item      = models.ForeignKey(Product,on_delete=models.CASCADE)
+
     quantity  = models.IntegerField(default=1)
     purchased = models.BooleanField(default=False)
     created   = models.DateTimeField(auto_now_add=True)
@@ -24,7 +25,11 @@ class Order(models.Model):
     # one cart may have in the multiple order
     # one order may have multiple cart
     # but eventually we will work with one order at a time
+    # why there is no one to many with order point to cart
+    # because you will eventually make multiple order
+    # in your shopping and 
     orderitems = models.ManyToManyField(Cart)
+
     user       = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     ordered    = models.BooleanField(default=False)
     created    = models.DateTimeField(auto_now_add=True)
