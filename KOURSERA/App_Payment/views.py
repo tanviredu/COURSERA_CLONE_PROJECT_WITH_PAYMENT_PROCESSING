@@ -17,6 +17,10 @@ import socket
 from django.views.decorators.csrf import csrf_exempt
 
 
+## adding content
+from App_Login.models import Video_Content
+
+
 
 @login_required
 def checkout(request):
@@ -93,15 +97,58 @@ def payment(request):
     print(response_data)
     return redirect(response_data['GatewayPageURL'])
 
+
+
 @csrf_exempt
 def complete(request):
-    return HttpResponse(request.POST)
-
+    if request.method == "POST" or request.method == "post":
+        payment_data = request.POST
+        status = payment_data['status']
+        if status == "VALID":
+            val_id = payment_data['val_id']
+            tran_id = payment_data['tran_id']
+            messages.success(request,"Payment Successfull")
+            ## it will call the purchage method
+            ## that will change the 
+            return HttpResponseRedirect(reverse('App_Payment:purchase',kwargs={'val_id':val_id,'tran_id':tran_id}))
+        elif status == "FAILED":
+            messages.success(request,'payment Failed')
+        return render(request,'App_Payment/complete.html',{})
 
 @login_required
-def purchase(request):
-
+def purchase(request,val_id,tran_id):
     ## in here we change the flag of the cart to purchased = True
     ## Order (ordered = True)
     ## add the video slug with the video contaent and the user
-    pass
+    order_qs = Order.objects.filter(user=request.user,ordered=False)
+    order = order_qs[0]
+    orderId = tran_id
+    order.ordered = True ## change the first flag
+    order.orderId = tran_id
+    order.paymentId = val_id
+    order.save()
+
+    ## get all the cart items
+    cart_items = Cart.objects.filter(user=request.user,purchased=False)
+    current_user = request.user
+
+    for item in cart_items:
+        item.purchased = True ## change the second flag
+        item.save()
+        vc = Video_Content(user=current_user)
+        vc.video_slug = item.item.slug
+        vc.save()
+    return HttpResponseRedirect(reverse('App_Shop:home'))
+
+
+
+@login_required
+def order_view(request):
+    try:
+        ## search for the order that is processed
+        orders = Order.objects.filter(user=request.user,ordered=True)
+        context = {'orders':orders}
+    except:
+        messages.warning(request,"You Do not Have Active order")
+        return redirect('App_Shop:home')
+    return render(request,"App_Payment/order.html",context=context)

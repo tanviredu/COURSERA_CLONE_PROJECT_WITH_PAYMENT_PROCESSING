@@ -64,7 +64,7 @@
                         </div>
                         <div id="main-nav" class="stellarnav">
                             <ul id="nav" class="nav navbar-nav pull-right">
-                                <li class="active"><a href="#home">Home</a></li>
+                                <li class="active"><a href="{% url 'App_Shop:home' %}">Home</a></li>
                                 <li><a href="#features">Features</a></li>
                                 <li><a href="#courses">Courses</a></li>
                                 <li><a href="#testmonial">Testmonial</a></li>
@@ -77,7 +77,8 @@
                                 {% else %}
                                 <li><a href="{% url 'App_Login:logout' %}">Logout </a></li>
                                 <li><a href="{% url 'App_Login:profile' %}">Profile </a></li>
-                                <li><a href="{% url 'App_Order:cart' %}">Cart</a></li>                               
+                                <li><a href="{% url 'App_Order:cart' %}">Cart</a></li>
+                                <li><a href="{% url 'App_Payment:orders' %}">Orders</a></li>
                                 {% endif %}
                                 <li><a href="#contact">Contact</a></li>
                             </ul>

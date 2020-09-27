@@ -95,9 +95,11 @@ class Profile(models.Model):
         return True 
 
 class Video_Content(models.Model):
-    user       = models.OneToOneField(User,on_delete=models.CASCADE,related_name="user_content")
+    user       = models.ForeignKey(User,on_delete=models.CASCADE,related_name="user_content")
     video_slug = models.SlugField(max_length=400) 
 
+    def __str__(self):
+        return str(self.user)
 
 
 
