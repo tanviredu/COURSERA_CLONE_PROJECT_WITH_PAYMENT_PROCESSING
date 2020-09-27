@@ -14,7 +14,7 @@ def get_courses_for_user(request):
         print(user_videos)
         return render(request,"App_Video/course_list.html",{'user_videos':user_videos})
     else:
-        return HttpResponse("You dont Have Any Video")
+        return render(request,"App_Video/course_list.html")
     
 
 
