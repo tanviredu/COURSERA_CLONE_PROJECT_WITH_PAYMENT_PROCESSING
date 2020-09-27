@@ -65,11 +65,7 @@
                         <div id="main-nav" class="stellarnav">
                             <ul id="nav" class="nav navbar-nav pull-right">
                                 <li class="active"><a href="{% url 'App_Shop:home' %}">Home</a></li>
-                                <li><a href="{% url 'App_Shop:all' %}">All Courses</a></li>
-                                <li><a href="#testmonial">Testmonial</a></li>
-                                <li><a href="#blog">Blog</a></li>
-
-                                
+                                <li><a href="{% url 'App_Shop:all' %}">All Courses</a></li>            
                                  {% if not request.user.is_authenticated %}
                                  <li><a href="{% url 'App_Login:signup' %}">Register Now </a></li>
                                       <li><a href="{% url 'App_Login:login' %}">Login </a></li>
