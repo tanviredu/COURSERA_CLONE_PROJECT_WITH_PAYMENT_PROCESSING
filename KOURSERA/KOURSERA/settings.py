@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'App_Shop',
     'App_Order',
     'App_Payment',
+    'App_Video',
     'crispy_forms',
 ]
 
