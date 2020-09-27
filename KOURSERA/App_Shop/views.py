@@ -10,3 +10,8 @@ class Home(ListView):
 class ProductDetail(LoginRequiredMixin,DetailView):
     model = Product
     template_name = "App_Shop/product_detail.html"
+
+def all_courses(request):
+    courses = Product.objects.all()
+    return render(request,'App_Shop/all.html',{'courses':courses})
+    
