@@ -86,7 +86,7 @@ class Profile(models.Model):
     def is_fully_filled(self):
         ''' check if all the field is fully filled '''
 
-        fields_name = [f.name for d in self._meta.get_fields()] ## return all the fields name
+        fields_name = [f.name for f in self._meta.get_fields()] ## return all the fields name
 
         for field_name  in fields_name:
             value = getattr(self,field_name)
